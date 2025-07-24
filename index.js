@@ -1,8 +1,14 @@
 import express from "express";
-const app = express();
-app.get("/", (req,res)=>{
-    res.json({message: "API REST"})
-})
-const PORT =3000
+import productsRouter from "./src/routes/products.router.js";
 
-app.listen(PORT, ()=> console.log(`http://localhost:${PORT}`));
+const app = express();
+
+app.get("/", (req, res) => {
+    res.json({ message: "API REST" });
+});
+
+
+app.use("/products", productsRouter);
+
+const PORT = 3000;
+app.listen(PORT, () => console.log(`Servidor corriendo en http://localhost:${PORT}`));
